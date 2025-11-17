@@ -7,4 +7,5 @@ var (
 	ErrInvalidData        = errors.New("формат даты YYYY-MM-DD")
 	ErrInvalidAmount      = errors.New("сумма не может быть отрицательной")
 	ErrExpenseNotFound    = errors.New("такая покупка не найдена")
+	ErrInvalidMonth       = errors.New("некорректный месяц")
 )
