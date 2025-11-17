@@ -1,0 +1,17 @@
+{
+	"last_id": 2,
+	"expenses": {
+		"1": {
+			"Id": 1,
+			"Description": "Test",
+			"Date": "2024-01-01T00:00:00Z",
+			"Amount": 200
+		},
+		"2": {
+			"Id": 2,
+			"Description": "Test1",
+			"Date": "2025-11-18T00:04:02.78827+03:00",
+			"Amount": 200
+		}
+	}
+}

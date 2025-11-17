@@ -8,20 +8,20 @@ import (
 )
 
 type storageData struct {
-	LastID   int       `json:"last_id"`
-	Expenses []Expense `json:"expenses"`
+	LastID   int             `json:"last_id"`
+	Expenses map[int]Expense `json:"expenses"`
 }
 
 type Storage struct {
 	mu       sync.Mutex
 	lastID   int
-	expenses []Expense
+	expenses map[int]Expense
 	filePath string
 }
 
 func NewStorage(filePath string) (*Storage, error) {
 	s := &Storage{
-		expenses: make([]Expense, 0),
+		expenses: make(map[int]Expense, 0),
 		lastID:   0,
 		filePath: filePath,
 	}
@@ -44,8 +44,15 @@ func (s *Storage) load() error {
 	}
 	defer f.Close()
 
-	var data storageData
+	info, err := f.Stat()
+	if err != nil {
+		return err
+	}
+	if info.Size() == 0 {
+		return nil
+	}
 
+	var data storageData
 	if err := json.NewDecoder(f).Decode(&data); err != nil {
 		return err
 	}
@@ -55,8 +62,6 @@ func (s *Storage) load() error {
 	return nil
 }
 func (s *Storage) save() error {
-	s.mu.Lock()
-	defer s.mu.Unlock()
 
 	var data storageData
 
@@ -99,7 +104,7 @@ func (s *Storage) AddExpense(description string, dateString string, amount float
 		s.lastID--
 		return Expense{}, err
 	}
-	s.expenses = append(s.expenses, exp)
+	s.expenses[s.lastID] = exp
 
 	if err := s.save(); err != nil {
 		return Expense{}, err
