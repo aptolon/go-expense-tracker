@@ -1,17 +1,41 @@
 {
-	"last_id": 2,
+	"last_id": 7,
 	"expenses": {
-		"1": {
-			"Id": 1,
-			"Description": "Test",
-			"Date": "2024-01-01T00:00:00Z",
-			"Amount": 200
-		},
 		"2": {
 			"Id": 2,
-			"Description": "Test1",
-			"Date": "2025-11-18T00:04:02.78827+03:00",
+			"Description": "Test",
+			"Date": "2025-01-01T00:00:00Z",
 			"Amount": 200
+		},
+		"3": {
+			"Id": 3,
+			"Description": "Test1",
+			"Date": "2025-01-01T00:00:00Z",
+			"Amount": 201
+		},
+		"4": {
+			"Id": 4,
+			"Description": "Test1",
+			"Date": "2025-11-18T13:39:27.1706363+03:00",
+			"Amount": 201
+		},
+		"5": {
+			"Id": 5,
+			"Description": "Test",
+			"Date": "2025-01-01T00:00:00Z",
+			"Amount": 200
+		},
+		"6": {
+			"Id": 6,
+			"Description": "Test1",
+			"Date": "2025-01-01T00:00:00Z",
+			"Amount": 201
+		},
+		"7": {
+			"Id": 7,
+			"Description": "Test1",
+			"Date": "2025-11-18T13:40:08.8132276+03:00",
+			"Amount": 201
 		}
 	}
 }

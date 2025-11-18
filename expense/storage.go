@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"sync"
+	"time"
 )
 
 type storageData struct {
@@ -114,7 +115,81 @@ func (s *Storage) AddExpense(description string, dateString string, amount float
 }
 
 // 2 обновить расход
+func (s *Storage) UpdateExpense(id int, description string, dateString string, amount float64) (Expense, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	_, ok := s.expenses[id]
+	if !ok {
+		return Expense{}, ErrExpenseNotFound
+	}
+
+	exp, err := NewExpense(id, description, dateString, amount)
+	if err != nil {
+		return Expense{}, err
+	}
+	s.expenses[id] = exp
+
+	if err := s.save(); err != nil {
+		return Expense{}, err
+	}
+
+	return exp, nil
+}
+
 // 3 удалить расход
+func (s *Storage) DeleteExpense(id int) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	_, ok := s.expenses[id]
+	if !ok {
+		return ErrExpenseNotFound
+	}
+
+	delete(s.expenses, id)
+
+	if err := s.save(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // 4 посмотреть все расходы
+func (s *Storage) GetAllExpenses() []Expense {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	var exps []Expense
+	for _, e := range s.expenses {
+		exps = append(exps, e)
+	}
+	return exps
+}
+
 // 5 посмотреть сводку раходов
+func (s *Storage) TotalSummary() float64 {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	var summ float64
+	for _, e := range s.expenses {
+		summ += e.Amount
+	}
+	return summ
+
+}
+
 // 6 посмотреть сводку расходов по месяцу
+func (s *Storage) MonthlySummary(month int) float64 {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	var summ float64
+	year := time.Now().Year()
+	for _, e := range s.expenses {
+		if int(e.Date.Month()) == month && year == e.Date.Year() {
+			summ += e.Amount
+		}
+	}
+	return summ
+
+}
