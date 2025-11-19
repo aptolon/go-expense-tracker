@@ -180,7 +180,10 @@ func (s *Storage) TotalSummary() float64 {
 }
 
 // 6 посмотреть сводку расходов по месяцу
-func (s *Storage) MonthlySummary(month int) float64 {
+func (s *Storage) MonthlySummary(month int) (float64, error) {
+	if month > 12 || month < 1 {
+		return 0, ErrInvalidMonth
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	var summ float64
@@ -190,6 +193,6 @@ func (s *Storage) MonthlySummary(month int) float64 {
 			summ += e.Amount
 		}
 	}
-	return summ
+	return summ, nil
 
 }

@@ -38,12 +38,12 @@ func (s *HTTPServer) StartServer() error {
 	router.
 		Path("/expenses/summary").
 		Methods("GET").
-		HandlerFunc(s.httpHandlers.HandlerTotalSummary)
+		Queries("month", "{month}").
+		HandlerFunc(s.httpHandlers.HandlerMonthlySummary)
 	router.
 		Path("/expenses/summary").
 		Methods("GET").
-		Queries("month", "{month}").
-		HandlerFunc(s.httpHandlers.HandlerMonthlySummary)
+		HandlerFunc(s.httpHandlers.HandlerTotalSummary)
 	fmt.Println("сервер запущен на :8080")
 	return http.ListenAndServe(":8080", router)
 }

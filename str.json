@@ -1,125 +1,23 @@
 {
-	"last_id": 21,
+	"last_id": 3,
 	"expenses": {
-		"10": {
-			"Id": 10,
-			"Description": "в",
-			"Date": "2022-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"11": {
-			"Id": 11,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"12": {
-			"Id": 12,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"13": {
-			"Id": 13,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"14": {
-			"Id": 14,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"15": {
-			"Id": 15,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"16": {
-			"Id": 16,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"17": {
-			"Id": 17,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"18": {
-			"Id": 18,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"19": {
-			"Id": 19,
-			"Description": "",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
+		"1": {
+			"Id": 1,
+			"Description": "КК",
+			"Date": "2025-01-05T00:00:00Z",
+			"Amount": 12
 		},
 		"2": {
 			"Id": 2,
-			"Description": "Test",
-			"Date": "2025-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"20": {
-			"Id": 20,
-			"Description": "",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 0
-		},
-		"21": {
-			"Id": 21,
-			"Description": "в",
-			"Date": "2022-01-01T00:00:00Z",
-			"Amount": 200
+			"Description": "КК",
+			"Date": "1000-01-05T00:00:00Z",
+			"Amount": 12
 		},
 		"3": {
 			"Id": 3,
-			"Description": "Test1",
-			"Date": "2025-01-01T00:00:00Z",
-			"Amount": 201
-		},
-		"4": {
-			"Id": 4,
-			"Description": "Test1",
-			"Date": "2025-11-18T13:39:27.1706363+03:00",
-			"Amount": 201
-		},
-		"5": {
-			"Id": 5,
-			"Description": "Test",
-			"Date": "2025-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"6": {
-			"Id": 6,
-			"Description": "Test1",
-			"Date": "2025-01-01T00:00:00Z",
-			"Amount": 201
-		},
-		"7": {
-			"Id": 7,
-			"Description": "Test1",
-			"Date": "2025-11-18T13:40:08.8132276+03:00",
-			"Amount": 201
-		},
-		"8": {
-			"Id": 8,
-			"Description": "PostmanTest",
-			"Date": "2025-01-01T00:00:00Z",
-			"Amount": 200
-		},
-		"9": {
-			"Id": 9,
-			"Description": "PostmanTest",
-			"Date": "0001-01-01T00:00:00Z",
-			"Amount": 200
+			"Description": "КК",
+			"Date": "2025-11-20T01:22:58.550965+03:00",
+			"Amount": 12
 		}
 	}
 }

@@ -9,7 +9,7 @@ import (
 func main() {
 	storage, err := expense.NewStorage("./str.json")
 	if err != nil {
-		fmt.Println("Error1:", err)
+		fmt.Println("Error:", err)
 		return
 	}
 	httpHandlers := http.NewHTTPHandlers(storage)

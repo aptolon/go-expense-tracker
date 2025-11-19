@@ -130,7 +130,22 @@ failed:
 	- response body: 	JSON with error + time
 */
 func (h *HTTPHandlers) HandlerDeleteExpense(w http.ResponseWriter, r *http.Request) {
-
+	id, err := strconv.Atoi(mux.Vars(r)["id"])
+	if err != nil {
+		errDTO := NewErrDTO(err.Error())
+		http.Error(w, errDTO.ToString(), http.StatusBadRequest)
+		return
+	}
+	if err := h.Storage.DeleteExpense(id); err != nil {
+		errDTO := NewErrDTO(err.Error())
+		if errors.Is(err, expense.ErrExpenseNotFound) {
+			http.Error(w, errDTO.ToString(), http.StatusNotFound)
+		} else {
+			http.Error(w, errDTO.ToString(), http.StatusInternalServerError)
+		}
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
 }
 
 // 4 посмотреть все расходы
@@ -147,7 +162,16 @@ failed:
 	- response body: 	JSON with error + time
 */
 func (h *HTTPHandlers) HandlerGetAllExpenses(w http.ResponseWriter, r *http.Request) {
-
+	exp := h.Storage.GetAllExpenses()
+	b, err := json.MarshalIndent(exp, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+	w.WriteHeader(http.StatusContinue)
+	if _, err := w.Write(b); err != nil {
+		fmt.Println("failed to write http response", err)
+		return
+	}
 }
 
 // 5 посмотреть сводку раходов
@@ -164,7 +188,16 @@ failed:
 	- response body: 	JSON with error + time
 */
 func (h *HTTPHandlers) HandlerTotalSummary(w http.ResponseWriter, r *http.Request) {
-
+	exp := h.Storage.TotalSummary()
+	b, err := json.MarshalIndent(exp, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+	w.WriteHeader(http.StatusContinue)
+	if _, err := w.Write(b); err != nil {
+		fmt.Println("failed to write http response", err)
+		return
+	}
 }
 
 // 6 посмотреть сводку расходов по месяцу
@@ -181,5 +214,25 @@ failed:
 	- response body: 	JSON with error + time
 */
 func (h *HTTPHandlers) HandlerMonthlySummary(w http.ResponseWriter, r *http.Request) {
-
+	month, err := strconv.Atoi(mux.Vars(r)["month"])
+	if err != nil {
+		errDTO := NewErrDTO(err.Error())
+		http.Error(w, errDTO.ToString(), http.StatusBadRequest)
+		return
+	}
+	exp, err := h.Storage.MonthlySummary(month)
+	if err != nil {
+		errDTO := NewErrDTO(err.Error())
+		http.Error(w, errDTO.ToString(), http.StatusBadRequest)
+		return
+	}
+	b, err := json.MarshalIndent(exp, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+	w.WriteHeader(http.StatusContinue)
+	if _, err := w.Write(b); err != nil {
+		fmt.Println("failed to write http response", err)
+		return
+	}
 }
